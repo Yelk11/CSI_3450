@@ -19,7 +19,7 @@ $db = "username";
 */
 
 //create connection
-$con=mysqli_connect($server,$userName,$pass,$db);
+$con = new mysqli($server,$userName,$pass,$db);
 
 //Check connection
 if (mysqli_connect_errno())
@@ -27,20 +27,15 @@ if (mysqli_connect_errno())
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-// Create tables
+$result = $con->multi_query(file_get_contents("fill_tables.sql")) || trigger_error("Query Failed".mysqli_error($con), E_USER_ERROR);
+
+//mysqli query
 $sql = file_get_contents("create_table.sql");
+$stmt = $con->multi_query($sql);
 
-if ( $con->multi_query($sql)){
-    echo "it worked";
-}
 
-//$con->mysqli_query($con, "BULK INSERT FLIGHT FROM \"data\\PLANE.dat\"") || trigger_error("Query Failed".mysqli_error($con), E_USER_ERROR);
 
-$test=2;
-if ($test>=1) {
-  trigger_error("Value must be 1 or below");
-  echo "qwe here";
-}
+
 
 $con->close();
 
