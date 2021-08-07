@@ -27,21 +27,20 @@ if (mysqli_connect_errno())
 // Create tables
 $sql = file_get_contents("create_table.sql");
 
-$con->multi_query($sql)
-
-<form action="" method="post">
-First Name: <input type="text" name="first_name"><br>
-Last Name: <input type="text" name="last_name"><br>
-
-
-
-
-
+$con->multi_query($sql);
+$con->multi_query(file_get_contents("fill_tables.sql"));
 
 $con->close();
 
 ?>
 
-<a href="test.php">This is text"<a/>
+<form action="" method="post">
+First Name: <input type="text" name="first_name"><br>
+Last Name: <input type="text" name="last_name"><br>
+</form>
+
+<a href="test.php">Go to Test.php<a/>
 </body>
+
+
 </html>
