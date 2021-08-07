@@ -24,16 +24,24 @@ if (mysqli_connect_errno())
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
+// Create tables
 $sql = file_get_contents("create_table.sql");
 
-if ($con->multi_query($sql) === TRUE) {
-    echo "Table MyGuests created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
+$con->multi_query($sql)
+
+<form action="" method="post">
+First Name: <input type="text" name="first_name"><br>
+Last Name: <input type="text" name="last_name"><br>
+
+
+
+
+
 
 $con->close();
 
 ?>
+
+<a href="test.php">This is text"<a/>
 </body>
 </html>
