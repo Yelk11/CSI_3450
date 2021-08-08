@@ -27,26 +27,30 @@ if (mysqli_connect_errno())
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$result = $con->multi_query(file_get_contents("fill_tables.sql")) || trigger_error("Query Failed".mysqli_error($con), E_USER_ERROR);
+// $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
 
-//mysqli query
-$sql = file_get_contents("create_table.sql");
-$stmt = $con->multi_query($sql);
-
-
-
+// //mysqli query
+// $sql = file_get_contents("create_table.sql");
+// $stmt = $con->multi_query($sql);
 
 
 $con->close();
 
 ?>
 
-<form action="" method="post">
+<form action="test_submit.php" method="post">
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
+<input type="submit">
 </form>
 
+<br>
+<br>
+
 <a href="test.php">Go to Test.php<a/>
+
+
+
 </body>
 
 
