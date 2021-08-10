@@ -38,7 +38,7 @@ $con->close();
 
 ?>
 
-<form action="test_submit.php" method="post">
+<form action="Flights.php" method="post">
 Destination: <input type="text" name="destination"><br>
 <input type="submit">
 </form>
@@ -46,7 +46,6 @@ Destination: <input type="text" name="destination"><br>
 <br>
 <br>
 
-<a href="test.php">Go to Test.php<a/>
 
 
 

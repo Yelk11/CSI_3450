@@ -38,9 +38,11 @@ $con->close();
 
 ?>
 
-<form action="Payment form.php" method="post">
-Available Flights: <output type="" name="available_flights"><br>
-
+<form action="Flight information.php" method="post">
+Name on Card: <input type="text" name="name_on_card"><br>
+Card Number: <input type="text" name="card_number"><br>
+Security Code: <input type="text" name="security_code"><br> 
+Billing Address: <input type="text" name="billing_address"><br>
 <input type="submit">
 </form>
 
