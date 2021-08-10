@@ -40,7 +40,7 @@ $con->close();
 
 
 
-<form action="test_submit.php" method="post">
+<form action="Destination form.php" method="post">
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
 Frequent Flyer Miles: <input type="text" name="frequent_flyer_miles"><br>
