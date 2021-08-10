@@ -45,7 +45,10 @@ First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
 Frequent Flyer Miles: <input type="text" name="frequent_flyer_miles"><br>
 TSA Precheck: <input type="checkbox" name="tsa_precheck"><br>
-Email Address: <input type="checkbox" name="tsa_precheck"><br>
+Email Address: <input type="email" name="email_address"><br>
+Phone Number: <input type="tel" name="phone_number" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+
+
 
 <input type="submit">
 </form>
