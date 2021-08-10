@@ -53,7 +53,7 @@ $source_sql = "SELECT * FROM AIRPORT WHERE AIRPORT_ID = $source_airport";
 $destination_sql = "SELECT * FROM AIRPORT WHERE AIRPORT_ID = $destination_airport";
 
 mysqli_free_result($result);
-mysqli_result($result);
+
 $result = mysqli_query($con, $plane_sql);
 $resultCheck = mysqli_num_rows($result);
 
@@ -64,7 +64,7 @@ if ($resultCheck > 0)
 }
 
 mysqli_free_result($result);
-mysqli_result($result);
+
 $result = mysqli_query($con, $source_sql);
 $resultCheck = mysqli_num_rows($result);
 
@@ -75,7 +75,7 @@ if ($resultCheck > 0)
 }
 
 mysqli_free_result($result);
-mysqli_result($result);
+
 $result = mysqli_query($con, $destination_sql);
 $resultCheck =mysqli_num_rows($result);
 
