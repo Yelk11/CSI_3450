@@ -30,21 +30,19 @@ error_reporting(E_ALL);
 
 
 //create connection
-$con = new mysqli_connect($server,$userName,$pass,$db);
-
-//Check connection
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
+$con = mysqli_connect($server,$userName,$pass,$db);
 
 $sql = "SELECT * FROM FLIGHT;";
-$result = $con->query($sql) || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
+$result = mysqli_query($con, $sql);
+$resultCheck =mysqli_num_rows($result);
 
-
-
-
+if ($resultCheck > 0)
+{
+    while ($row = mysqli_fetch_assoc($result)){
+        echo $row['FLIGHT_ID'];
+        echo "<br>";
+    }
+}
 
 $con->close();
 
