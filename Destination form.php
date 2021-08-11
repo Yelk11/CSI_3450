@@ -35,7 +35,7 @@
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo $airport_list["CITY"][2];
+                        echo $airport_list . "<br>";
                         // echo "<option>" . "From: " . $airport_list["CITY"] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
