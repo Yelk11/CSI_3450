@@ -24,18 +24,19 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                 
                 $con = mysqli_connect($server,$userName,$pass,$db);
 
-                $sql = "SELECT * FROM FLIGHT;";
+                
                 $aiport_sql = "SELECT * FROM AIRPORT;";
                 $result = mysqli_query($con, $aiport_sql);
-                $resultCheck = mysqli_num_rows($result);
+                
 
 
-                while ($row = mysqli_fetch_assoc($result)){
-                    echo $row["AIRPORT_NAME"];
-                }
+                $airport_list = mysqli_fetch_assoc($result);
+                echo "Airport: " . $airport_list;
                 mysqli_free_result($result);
-
+                // break
+                $sql = "SELECT * FROM FLIGHT;";
                 $result = mysqli_query($con, $sql);
+                $resultCheck = mysqli_num_rows($result);
                 
                 if ($resultCheck > 0)
                 {
