@@ -4,8 +4,8 @@
 
 <body>
     <h1>Pick your flight</h1>
-    <form action="view_flight_info.php" method="post">
-        <select name="source">
+    <!-- <form action="view_flight_info.php" method="post">
+        <select name="source"> -->
             <?php
             echo "line 19";
                 include "password.php";
@@ -35,15 +35,15 @@
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        
-                        echo "<option>" . "From: " . $airport_list["CITY"] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
+                        echo "hello";
+                        // echo "<option>" . "From: " . $airport_list["CITY"] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
                 }
                 $con->close();
                 echo "line 51";
             ?>
-        </select>
+        <!-- </select> -->
         <input type="submit">
         <button type="button" onclick="history.back();">Back</button>
     </form>
