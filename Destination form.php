@@ -25,25 +25,23 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                 $con = mysqli_connect($server,$userName,$pass,$db);
 
                 $sql = "SELECT * FROM FLIGHT;";
-                //$aiport_sql = "SELECT * FROM AIRPORT;";
-                //$result = mysqli_query($con, $aiport_sql);
-                //$resultCheck = mysqli_num_rows($result);
+                $aiport_sql = "SELECT * FROM AIRPORT;";
+                $result = mysqli_query($con, $aiport_sql);
+                $resultCheck = mysqli_num_rows($result);
 
 
-                //$airport_list = mysqli_fetch_assoc($result);
-                //mysqli_free_result($result);
+                $airport_list = mysqli_fetch_assoc($result);
+                mysqli_free_result($result);
 
-                $result = mysqli_query($con, $ql);
+                $result = mysqli_query($con, $sql);
 
                 if ($resultCheck > 0)
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "<option>" . $row["BOARDING_TIME"] . "</option>";
+                        echo "<option>" . "From: " . $airport_list['1'] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
-                }else{
-                    echo "No data";
                 }
                 $con->close();
             ?>
