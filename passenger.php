@@ -8,43 +8,66 @@ include "password.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-/*
-make a 'password.php' file and copy this text (replacing with correct info)
-<?php
-$server = "localhost";
-$userName = "username";
-$pass = "password";
-$db = "username";
-?>
-*/
 
 //create connection
-$con = mysqli_connect($server,$userName,$pass,$db);
+$conn = mysqli_connect($server,$userName,$pass,$db);
 
-if (isset ($_POST["tsa_precheck"]) && ($_POST["submit"]))
-{
-    $fname = $_POST["first_name"];
-    $lname = $_POST["last_name"];
-    $ffmiles = $_POST["frequent_flyer_miles"];
-    $email = $_POST["email_address"];
-    $phonenum = $_POST["phone_number"];
-    $insert = mysqli_query($db,"INSERT INTO PASSENGER (FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) VALUES ('$fname','$lname','$ffmiles','Y','$email','$phonenum')");
-}
-
-if (($_POST["submit"]))
-{
-    $fname = $_POST["first_name"];
-    $lname = $_POST["last_name"];
-    $ffmiles = $_POST["frequent_flyer_miles"];
-    $email = $_POST["email_address"];
-    $phonenum = $_POST["phone_number"];
-    $insert = mysqli_query($db,"INSERT INTO PASSENGER (FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) VALUES ('$fname','$lname','$ffmiles','N','$email','$phonenum')");
-}
-//Check connection
 if (mysqli_connect_errno())
 {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
+
+//$precheck = $_POST["tsa_check"];
+
+if (isset ($_POST["tsa_check"]) && ($_POST["submit"]))
+{
+    $result= mysqli_query("SELECT MAX(PASSENGER_ID) AS maximum FROM PASSENGER");
+    $row = mysqli_fetch_assoc($result); 
+    $maximum = $row["maximum"];
+    //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
+    $passID = $maximum++; 
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $ffmiles = $_POST["frequent_flyer_miles"];
+    $email = $_POST["email_address"];
+    $phonenum = $_POST["phone_number"];
+    $sql = "INSERT INTO PASSENGER (PASSENGER_ID, FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) 
+              VALUES ('$passID','$fname','$lname','$ffmiles','Y','$email','$phonenum')";
+    mysqli_query($conn, $sql);
+    
+    header("Location: Destination form.php");
+}
+
+if (isset ($_POST["submit"]))
+{  
+    $result= mysqli_query("SELECT MAX(PASSENGER_ID) AS maximum FROM PASSENGER");
+    $row = mysqli_fetch_assoc($result); 
+    $maximum = $row["maximum"];
+    //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
+    $passID = $maximum++;  
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $ffmiles = $_POST["frequent_flyer_miles"];
+    $email = $_POST["email_address"];
+    $phonenum = $_POST["phone_number"];
+    $sql = "INSERT INTO PASSENGER (PASSENGER_ID, FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) 
+              VALUES ('$passID','$fname','$lname','$ffmiles','N','$email','$phonenum')";
+    mysqli_query($conn, $sql);
+    
+    header("Location: Destination form.php");
+}
+/*//Check connection
+if (mysqli_query($conn, $sql)) {
+      echo "New record created successfully";
+} else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
+mysqli_close($conn);
+
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}*/
 
 // $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
 
@@ -53,23 +76,22 @@ if (mysqli_connect_errno())
 // $stmt = $con->multi_query($sql);
 
 
-$con->close();
+$conn->close();
 
 ?>
 
 
 
-<form action="Destination form.php" method="post">
+<form action="" method="post">
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
 Frequent Flyer Miles: <input type="text" name="frequent_flyer_miles"><br>
-TSA Precheck: <input type="checkbox" name="tsa_precheck"><br>
+TSA Precheck: <input type="checkbox" name="tsa_check"><br>
 Email Address: <input type="email" name="email_address"><br>
 Phone Number: <input type="tel" name="phone_number" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
 
-
-
-<input type="submit">
+<input type="submit" name="submit"/>
+<button type="button" onclick="history.back();">Back</button>
 </form>
 PASSENGER_ID        INTEGER NOT NULL,
     FIRST_NAME          CHAR(20),

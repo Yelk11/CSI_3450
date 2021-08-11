@@ -8,25 +8,25 @@ include "password.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-/*
-make a 'password.php' file and copy this text (replacing with correct info)
-<?php
-$server = "localhost";
-$userName = "username";
-$pass = "password";
-$db = "username";
-?>
-*/
 
 //create connection
-$con = mysqli_connect($server,$userName,$pass,$db);
+$conn = mysqli_connect($server,$userName,$pass,$db);
 
-if (isset ($_POST["pilot_check"]) && ($_POST["submit"]))
+if (mysqli_connect_errno())
+{
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+if (isset ($_POST['pilot_check']) && ($_POST['submit']))
 {
     $employeeID = $_POST["employee_id"];
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
-    $insert = mysqli_query($db,"INSERT INTO PILOT (PILOT_ID, FIRST_NAME, LAST_NAME) VALUES ('$employeeID','$fname','$lname')");
+    $sql = "INSERT INTO PILOT (PILOT_ID, FIRST_NAME, LAST_NAME) 
+                VALUES ('$employeeID','$fname','$lname')";
+    mysqli_query($conn, $sql);
+    
+    header("Location: Destination form.php");
 }
 
 if (isset ($_POST["flight_attendant_check"]) && ($_POST["submit"])) 
@@ -34,14 +34,18 @@ if (isset ($_POST["flight_attendant_check"]) && ($_POST["submit"]))
     $employeeID = $_POST["employee_id"];
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
-    $insert = mysqli_query($db,"INSERT INTO FLIGHT_ATTENDANT (FLIGHT_ATTENDANT_ID, FIRST_NAME, LAST_NAME) VALUES ('$employeeID','$fname','$lname')");  
+    $sql = "INSERT INTO FLIGHT_ATTENDANT (FLIGHT_ATTENDANT_ID, FIRST_NAME, LAST_NAME) 
+                VALUES ('$employeeID','$fname','$lname');";
+    mysqli_query($conn, $sql);   
+    
+    header("Location: Destination form.php");
 }
 
-//Check connection
+/*//Check connection
 if (mysqli_connect_errno())
 {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
+}*/
 
 // $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
 
@@ -50,18 +54,25 @@ if (mysqli_connect_errno())
 // $stmt = $con->multi_query($sql);
 
 
-$con->close();
+$conn->close();
 
 ?>
 
-<form action="Destination form.php" method="post">
+<form action="" method="POST">
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
 Employee ID:  <input type="text" name="employee_id"><br>
-<input type="submit"/>
+Pilot: <input type="checkbox" name="pilot_check"><br>
+Flight Attendant: <input type="checkbox" name="flight_attendant_check"><br>
+<input type="submit" name="submit"/>
 <button type="button" onclick="history.back();">Back</button>
-</form>
 
+</form>
+    FIRST_NAME          CHAR(20),
+    LAST_NAME           CHAR(20),
+    EMPLOYEE_ID         INTEGER NOT NULL,
+    PILOT               CHAR(1),
+    FLIGHT_ATTENDANT    CHAR(1),
 <br>
 <br>
 
