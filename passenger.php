@@ -95,13 +95,13 @@ Phone Number: <input type="tel" name="phone_number" placeholder="123-456-7890" p
 <input type="submit" name="submit" value="Submit"/>
 <button type="button" onclick="history.back();">Back</button>
 </form>
-PASSENGER_ID        INTEGER NOT NULL,
+<!--PASSENGER_ID        INTEGER NOT NULL,
     FIRST_NAME          CHAR(20),
     LAST_NAME           CHAR(20),
     FREQUENT_FLYER_NUMBER   INTEGER,
     TSA_PRECHECK        CHAR(1),
     EMAIL_ADDRESS       VARCHAR(20),
-    PHONE_NUMBER        VARCHAR(15),
+    PHONE_NUMBER        VARCHAR(15),-->
 <br>
 <br>
 
