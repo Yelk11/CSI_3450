@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-CREATE TABLE IF NOT EXISTS FLIGHT (
-    FLIGHT_ID           INTEGER NOT NULL,
-    PLANE_ID            INTEGER NOT NULL,
-    DEPARTURE_TIME      TIME,
-    DESTINATION_AIRPORT INTEGER NOT NULL,
-    BOARDING_TIME       TIME,
-    SOURCE_AIRPORT      INTEGER NOT NULL,
-    DURATION            TIME,
 
-);
 <body>
     <h1>Pick your flight</h1>
     <form action="view_flight_info.php" method="post">
