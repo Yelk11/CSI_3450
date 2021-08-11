@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
 
 
                 $airport_list = mysqli_fetch_assoc($result);
-                echo "Airport: " . $airport_list;
+                echo "Airport: ";
                 mysqli_free_result($result);
                 // break
                 $sql = "SELECT * FROM FLIGHT;";
