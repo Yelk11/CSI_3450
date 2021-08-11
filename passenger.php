@@ -19,13 +19,14 @@ if (mysqli_connect_errno())
 
 //$precheck = $_POST["tsa_check"];
 
-if (isset ($_POST["tsa_check"]) && ($_POST["submit"]))
+if (($_POST["tsa_check"] == "1") && ($_POST["submit"] == "Submit"))
 {
-    $result= mysqli_query("SELECT MAX(PASSENGER_ID) AS maximum FROM PASSENGER");
+    $result= mysqli_query($conn, "SELECT MAX(PASSENGER_ID) AS 'maximum' FROM PASSENGER");
     $row = mysqli_fetch_assoc($result); 
+    //echo($row);
     $maximum = $row["maximum"];
     //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
-    $passID = $maximum++; 
+    $passID = $maximum + '1'; 
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
     $ffmiles = $_POST["frequent_flyer_miles"];
@@ -38,13 +39,14 @@ if (isset ($_POST["tsa_check"]) && ($_POST["submit"]))
     header("Location: Destination form.php");
 }
 
-if (isset ($_POST["submit"]))
+if (($_POST["tsa_check"] != "1") && ($_POST["submit"] == "Submit"))
 {  
-    $result= mysqli_query("SELECT MAX(PASSENGER_ID) AS maximum FROM PASSENGER");
+    $result= mysqli_query($conn, "SELECT MAX(PASSENGER_ID) AS 'maximum' FROM PASSENGER");
     $row = mysqli_fetch_assoc($result); 
+    //echo($row);
     $maximum = $row["maximum"];
     //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
-    $passID = $maximum++;  
+    $passID = $maximum + '1';  
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
     $ffmiles = $_POST["frequent_flyer_miles"];
@@ -86,11 +88,11 @@ $conn->close();
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
 Frequent Flyer Miles: <input type="text" name="frequent_flyer_miles"><br>
-TSA Precheck: <input type="checkbox" name="tsa_check"><br>
+TSA Precheck: <input type="checkbox" name="tsa_check" value="1"><br>
 Email Address: <input type="email" name="email_address"><br>
 Phone Number: <input type="tel" name="phone_number" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
 
-<input type="submit" name="submit"/>
+<input type="submit" name="submit" value="Submit"/>
 <button type="button" onclick="history.back();">Back</button>
 </form>
 PASSENGER_ID        INTEGER NOT NULL,

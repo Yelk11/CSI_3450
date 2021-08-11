@@ -56,7 +56,6 @@
             </select>
 
 <input type="submit">
-<button type="button" onclick="history.back();">Back</button>
 </form>
 </body>
 
