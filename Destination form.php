@@ -23,6 +23,7 @@
 
 
                 $airport_list = mysqli_fetch_assoc($result);
+                $aircheck = mysqli_num_rows($result);
                 echo "Airport: ";
                 mysqli_free_result($result);
                 // break
@@ -30,11 +31,11 @@
                 $result = mysqli_query($con, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 
-                if ($resultCheck > 0)
+                if ($resultCheck > 0 && $aircheck > 0)
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "hello";
+                        
                         echo "<option>" . "From: " . $airport_list[1] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
