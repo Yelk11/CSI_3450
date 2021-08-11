@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "<option>" . "From: " . $airport_list['1'] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
+                        echo "<option>" . "From: " . $airport_list[1] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
                 }
