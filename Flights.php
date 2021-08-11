@@ -2,7 +2,7 @@
 <html>
 
 <body>
-    <form action="view flight_info.php" method="post">
+    <form action="view_flight_info.php" method="post">
         <select>
             
 
