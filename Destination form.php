@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                         echo "<option>" . $row["BOARDING_TIME"] . "</option>";
 
                     }
+                }else{
+                    echo "No data";
                 }
                 $con->close();
             ?>
