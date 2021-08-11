@@ -19,7 +19,23 @@ $db = "username";
 */
 
 //create connection
-$con = new mysqli($server,$userName,$pass,$db);
+$con = mysqli_connect($server,$userName,$pass,$db);
+
+if (isset ($_POST["pilot_check"]) && ($_POST["submit"]))
+{
+    $employeeID = $_POST["employee_id"];
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $insert = mysqli_query($db,"INSERT INTO PILOT (PILOT_ID, FIRST_NAME, LAST_NAME) VALUES ('$employeeID','$fname','$lname')");
+}
+
+if (isset ($_POST["flight_attendant_check"]) && ($_POST["submit"])) 
+{    
+    $employeeID = $_POST["employee_id"];
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $insert = mysqli_query($db,"INSERT INTO FLIGHT_ATTENDANT (FLIGHT_ATTENDANT_ID, FIRST_NAME, LAST_NAME) VALUES ('$employeeID','$fname','$lname')");  
+}
 
 //Check connection
 if (mysqli_connect_errno())

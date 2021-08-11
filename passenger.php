@@ -19,8 +19,27 @@ $db = "username";
 */
 
 //create connection
-$con = new mysqli($server,$userName,$pass,$db);
+$con = mysqli_connect($server,$userName,$pass,$db);
 
+if (isset ($_POST["tsa_precheck"]) && ($_POST["submit"]))
+{
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $ffmiles = $_POST["frequent_flyer_miles"];
+    $email = $_POST["email_address"];
+    $phonenum = $_POST["phone_number"];
+    $insert = mysqli_query($db,"INSERT INTO PASSENGER (FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) VALUES ('$fname','$lname','$ffmiles','Y','$email','$phonenum')");
+}
+
+if (($_POST["submit"]))
+{
+    $fname = $_POST["first_name"];
+    $lname = $_POST["last_name"];
+    $ffmiles = $_POST["frequent_flyer_miles"];
+    $email = $_POST["email_address"];
+    $phonenum = $_POST["phone_number"];
+    $insert = mysqli_query($db,"INSERT INTO PASSENGER (FIRST_NAME, LAST_NAME, FREQUENT_FLYER_NUMBER, TSA_PRECHECK, EMAIL_ADDRESS, PHONE_NUMBER) VALUES ('$fname','$lname','$ffmiles','N','$email','$phonenum')");
+}
 //Check connection
 if (mysqli_connect_errno())
 {
