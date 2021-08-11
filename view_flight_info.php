@@ -90,5 +90,11 @@ $con->close();
 
 ?>
 
+</form>
+
+<button type="button"><a href="index.php">Go to Home Page</a></button>
+
+
+
 </body>
 </html>
