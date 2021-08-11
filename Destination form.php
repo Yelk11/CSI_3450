@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                 $resultCheck = mysqli_num_rows($result);
 
 
-                $airport_list = mysqli_fetch_assoc($result);
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo $row;
+                }
                 mysqli_free_result($result);
 
                 $result = mysqli_query($con, $sql);
-                foreach($airport_list as $value){
-                    echo $value . "<br>";
-                }
+                
                 if ($resultCheck > 0)
                 {
                     
