@@ -47,7 +47,7 @@
 </form>
 
 <a href="passenger.php" class="button button1">Passenger</a>
-<a href="employee.php" class="button button2">Employee</a>
+<a href="Employee login.php" class="button button2">Employee</a>
 
 
 </body>
