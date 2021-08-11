@@ -7,7 +7,7 @@
     <!-- <form action="view_flight_info.php" method="post">
         <select name="source"> -->
             <?php
-            echo "line 19";
+            
                 include "password.php";
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
@@ -24,7 +24,7 @@
 
                 $airport_list = mysqli_fetch_assoc($result);
                 $aircheck = mysqli_num_rows($result);
-                echo "Airport: ";
+                
                 mysqli_free_result($result);
                 // break
                 $sql = "SELECT * FROM FLIGHT;";
@@ -35,7 +35,7 @@
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo "hello";
+                        echo $airport_list["CITY"];
                         // echo "<option>" . "From: " . $airport_list["CITY"] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
 
                     }
