@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
     <form action="view_flight_info.php" method="post">
         <select name="source">
             <?php
+            echo "line 19";
                 include "password.php";
                 ini_set('display_errors', 1);
                 ini_set('display_startup_errors', 1);
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                 
                 $con = mysqli_connect($server,$userName,$pass,$db);
 
-                
+                echo "line 28";
                 $aiport_sql = "SELECT * FROM AIRPORT;";
                 $result = mysqli_query($con, $aiport_sql);
                 
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS FLIGHT (
                     }
                 }
                 $con->close();
+                echo "line 51";
             ?>
         </select>
         <input type="submit">
