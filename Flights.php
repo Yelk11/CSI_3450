@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <body>
+    <!-- <form action="view flight_info.php" method="post">
+        <select>
+            
+        </select>
 
-<?php
+        <input type="submit">
+    </form> -->
+    <?php
 
-include "password.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-/*
-make a 'password.php' file and copy this text (replacing with correct info)
-<?php
-$server = "localhost";
-$userName = "username";
-$pass = "password";
-$db = "username";
-?>
-*/
-
-//create connection
-$con = new mysqli($server,$userName,$pass,$db);
-
-//Check connection
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-// $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
-
-// //mysqli query
-// $sql = file_get_contents("create_table.sql");
-// $stmt = $con->multi_query($sql);
+        include "password.php";
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
 
 
-$con->close();
+        $con = mysqli_connect($server,$userName,$pass,$db);
 
-?>
+        $source_city = $_POST["source"];
 
-<form action="Payment form.php" method="post">
-Available Flights: <output type="" name="available_flights"><br>
+        $sql = "SELECT * FROM AIRPORT WHERE CITY = \"$source_city\"";
+        
 
-<input type="submit">
-</form>
+        $result = mysqli_query($con, $sql);
+        $resultCheck = mysqli_num_rows($result);
 
-<br>
-<br>
+        if ($resultCheck > 0)
+        {
+            $row = mysqli_fetch_assoc($result));
+            $source_airport_id = $row["AIRPORT_ID"];
 
+            mysqli_free_result($result);
 
-
-
-
+            //$flight_sql = "SELECT CITY FROM AIRPORT WHERE AIRPORT_ID = (SELECT DESTINATION_AIRPORT FROM FLIGHTS WHERE SOURCE_AIRPORT = $source_airport_id)";
+            $flight_sql = "SELECT DESTINATION_AIRPORT FROM FLIGHTS WHERE SOURCE_AIRPORT = 1";
+            
+            $result = mysqli_query($con, $sql);
+            $resultCheck = mysqli_num_rows($result);
+            
+            if ($resultCheck > 0)
+            {
+                while($row = mysqli_fetch_assoc($result))){
+                    echo "<option>" . $row["DESTINATION_AIRPORT"] . "</option>";
+                }
+            }
+            else{
+                echo "<h1>We have no flight coming from this Airport</h1>";
+            }
+            
+            
+                
+            
+        }
+    ?>
 </body>
-
 
 </html>
