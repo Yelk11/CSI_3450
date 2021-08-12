@@ -34,7 +34,7 @@
                     
                     while($row = mysqli_fetch_assoc($result)){
 
-                        echo "<option>" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
+                        echo "<option value=\"12\">" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
 
                     }
                 }
