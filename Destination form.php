@@ -5,7 +5,7 @@
 <body>
     <h1>Pick your flight</h1>
     <form action="view_flight_info.php" method="post">
-        <select name="source">
+        <select name="flight_id">
             <?php
             
                 include "password.php";
@@ -19,9 +19,9 @@
 
                 $sql = "SELECT FLIGHT.FLIGHT_ID, FLIGHT.BOARDING_TIME, FOO.AIRPORT_NAME AS SOURCE, BAR.AIRPORT_NAME AS DESTINATION
                 FROM FLIGHT
-                LEFT JOIN AIRPORT AS FOO
+                JOIN AIRPORT AS FOO
                 ON FLIGHT.DESTINATION_AIRPORT = FOO.AIRPORT_ID
-                LEFT JOIN AIRPORT AS BAR
+                JOIN AIRPORT AS BAR
                 ON FLIGHT.SOURCE_AIRPORT = BAR.AIRPORT_ID;";
                 
 
@@ -34,7 +34,7 @@
                     
                     while($row = mysqli_fetch_assoc($result)){
 
-                        echo "<option>" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
+                        echo "<option value=" . $row["FLIGHT_ID"] . ">" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
 
                     }
                 }
