@@ -5,7 +5,7 @@
 <body>
     <h1>Pick your flight</h1>
     <form action="test_out.php" method="post">
-        <select id="flight_id">
+        <select name="flight_id">
             <?php
             
                 include "password.php";
