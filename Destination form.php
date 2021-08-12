@@ -4,7 +4,7 @@
 
 <body>
     <h1>Pick your flight</h1>
-    <form action="test_out.php" method="post">
+    <form action="view_flight_info.php" method="post">
         <select name="flight_id">
             <?php
             
@@ -42,7 +42,7 @@
                 
             ?>
         </select>
-        <input type="text" name="flight_id"><
+        <input type="text" name="flight_id">
         <input type="submit">
         <button type="button" onclick="history.back();">Back</button>
     </form>
