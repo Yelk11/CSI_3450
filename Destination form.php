@@ -4,7 +4,7 @@
 
 <body>
     <h1>Pick your flight</h1>
-    <form action="view_flight_info.php" method="post">
+    <form action="test_out.php" method="post">
         <select id="flight_id">
             <?php
             
