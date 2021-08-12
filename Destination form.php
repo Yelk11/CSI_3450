@@ -4,8 +4,8 @@
 
 <body>
     <h1>Pick your flight</h1>
-    <!-- <form action="view_flight_info.php" method="post">
-        <select name="source"> -->
+    <form action="view_flight_info.php" method="post">
+        <select name="source">
             <?php
             
                 include "password.php";
@@ -16,34 +16,32 @@
                 
                 $con = mysqli_connect($server,$userName,$pass,$db);
 
-                echo "line 28";
-                $aiport_sql = "SELECT * FROM AIRPORT;";
-                $result = mysqli_query($con, $aiport_sql);
+
+                $sql = "SSELECT FLIGHT.FLIGHT_ID, FLIGHT.BOARDING_TIME, FOO.AIRPORT_NAME AS SOURCE, BAR.AIRPORT_NAME AS DESTINATION
+                FROM FLIGHT
+                LEFT JOIN AIRPORT AS FOO
+                ON FLIGHT.DESTINATION_AIRPORT = FOO.AIRPORT_ID
+                LEFT JOIN AIRPORT AS BAR
+                ON FLIGHT.SOURCE_AIRPORT = BAR.AIRPORT_ID;";
                 
 
-
-                $airport_list = mysqli_fetch_assoc($result);
-                $aircheck = mysqli_num_rows($result);
-                
-                mysqli_free_result($result);
-                // break
                 $sql = "SELECT * FROM FLIGHT;";
                 $result = mysqli_query($con, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 
-                if ($resultCheck > 0 && $aircheck > 0)
+                if ($resultCheck > 0)
                 {
                     
                     while($row = mysqli_fetch_assoc($result)){
-                        echo $airport_list . "<br>";
-                        // echo "<option>" . "From: " . $airport_list["CITY"] . " Leaving at: " . $row["DEPARTURE_TIME"] . " going to " . $airport_list['1'] . "Boarding: " . $row["BOARDING_TIME"] . "</option>";
+
+                        echo "<option>" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
 
                     }
                 }
                 $con->close();
-                echo "line 51";
+                
             ?>
-        <!-- </select> -->
+        </select>
         <input type="submit">
         <button type="button" onclick="history.back();">Back</button>
     </form>
