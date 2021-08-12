@@ -17,7 +17,7 @@
                 $con = mysqli_connect($server,$userName,$pass,$db);
 
 
-                $sql = "SSELECT FLIGHT.FLIGHT_ID, FLIGHT.BOARDING_TIME, FOO.AIRPORT_NAME AS SOURCE, BAR.AIRPORT_NAME AS DESTINATION
+                $sql = "SELECT FLIGHT.FLIGHT_ID, FLIGHT.BOARDING_TIME, FOO.AIRPORT_NAME AS SOURCE, BAR.AIRPORT_NAME AS DESTINATION
                 FROM FLIGHT
                 LEFT JOIN AIRPORT AS FOO
                 ON FLIGHT.DESTINATION_AIRPORT = FOO.AIRPORT_ID
@@ -25,7 +25,7 @@
                 ON FLIGHT.SOURCE_AIRPORT = BAR.AIRPORT_ID;";
                 
 
-                $sql = "SELECT * FROM FLIGHT;";
+                
                 $result = mysqli_query($con, $sql);
                 $resultCheck = mysqli_num_rows($result);
                 
