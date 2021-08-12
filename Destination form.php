@@ -5,7 +5,7 @@
 <body>
     <h1>Pick your flight</h1>
     <form action="view_flight_info.php" method="post">
-        <select name="flight_id">
+        <select id="flight_id">
             <?php
             
                 include "password.php";
@@ -34,7 +34,7 @@
                     
                     while($row = mysqli_fetch_assoc($result)){
 
-                        echo "<option name=\"flight_id\" value=\"123\">" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
+                        echo "<option>" . "From: " . $row["SOURCE"] . " Leaving at: " . $row["BOARDING_TIME"] . " going to " . $row["DESTINATION"] . "</option>";
 
                     }
                 }
