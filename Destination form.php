@@ -42,7 +42,7 @@
                 
             ?>
         </select>
-        <input type="text" name="flight_id">
+        <!-- <input type="text" name="flight_id"> -->
         <input type="submit">
         <button type="button" onclick="history.back();">Back</button>
     </form>
