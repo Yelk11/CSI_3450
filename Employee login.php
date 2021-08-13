@@ -22,8 +22,7 @@ $fa_check = 'unchecked';
 
 if (isset ($_POST['submit']))
 {
-//if (isset ($_POST['pilot_check']) && ($_POST['submit']))
-//{
+
     $selected_radio = $_POST['check'];
     if ($selected_radio == 'pilot')
     {
@@ -37,10 +36,7 @@ if (isset ($_POST['submit']))
         
         header("Location: Destination form.php");
     }
-//}
 
-//if (isset ($_POST["flight_attendant_check"]) && ($_POST["submit"])) 
-//{ 
     else if ($selected_radio == 'fa')
     {
         $fa_check = 'checked';   
@@ -53,21 +49,8 @@ if (isset ($_POST['submit']))
         
         header("Location: Destination form.php");
     }
-//}
+
 }
-
-/*//Check connection
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}*/
-
-// $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
-
-// //mysqli query
-// $sql = file_get_contents("create_table.sql");
-// $stmt = $con->multi_query($sql);
-
 
 $conn->close();
 
@@ -83,16 +66,6 @@ Employee ID:  <input type="text" name="employee_id"><br>
 <button type="button" onclick="history.back();">Back</button>
 
 </form>
-<!--FIRST_NAME          CHAR(20),
-    LAST_NAME           CHAR(20),
-    EMPLOYEE_ID         INTEGER NOT NULL,
-    PILOT               CHAR(1),
-    FLIGHT_ATTENDANT    CHAR(1),-->
-<br>
-<br>
-
-
-
 
 </body>
 

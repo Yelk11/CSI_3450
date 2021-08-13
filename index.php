@@ -41,6 +41,8 @@
 </head>
 <body>
 
+
+
 <form action="view_flight_info.php" method="post">
     Flight ID number (0-1155): <input type="text" name="flight_id" required><br>
     <input type="submit">

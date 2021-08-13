@@ -17,15 +17,13 @@ if (mysqli_connect_errno())
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-//$precheck = $_POST["tsa_check"];
+
 
 if (($_POST["tsa_check"] == "1") && ($_POST["submit"] == "Submit"))
 {
     $result= mysqli_query($conn, "SELECT MAX(PASSENGER_ID) AS 'maximum' FROM PASSENGER");
     $row = mysqli_fetch_assoc($result); 
-    //echo($row);
     $maximum = $row["maximum"];
-    //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
     $passID = $maximum + '1'; 
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
@@ -36,16 +34,14 @@ if (($_POST["tsa_check"] == "1") && ($_POST["submit"] == "Submit"))
               VALUES ('$passID','$fname','$lname','$ffmiles','Y','$email','$phonenum')";
     mysqli_query($conn, $sql);
     
-    header("Location: Destination form.php");
+    header("Location: flight_list.php");
 }
 
 if (($_POST["tsa_check"] != "1") && ($_POST["submit"] == "Submit"))
 {  
     $result= mysqli_query($conn, "SELECT MAX(PASSENGER_ID) AS 'maximum' FROM PASSENGER");
     $row = mysqli_fetch_assoc($result); 
-    //echo($row);
     $maximum = $row["maximum"];
-    //$query = "SELECT MAX(PASSENGER_ID) FROM PASSENGER";
     $passID = $maximum + '1';  
     $fname = $_POST["first_name"];
     $lname = $_POST["last_name"];
@@ -56,34 +52,12 @@ if (($_POST["tsa_check"] != "1") && ($_POST["submit"] == "Submit"))
               VALUES ('$passID','$fname','$lname','$ffmiles','N','$email','$phonenum')";
     mysqli_query($conn, $sql);
     
-    header("Location: Destination form.php");
+    header("Location: flight_list.php");
 }
-/*//Check connection
-if (mysqli_query($conn, $sql)) {
-      echo "New record created successfully";
-} else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-mysqli_close($conn);
-
-if (mysqli_connect_errno())
-{
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}*/
-
-// $result = $con->multi_query() || trigger_error("Query Failed: ".mysqli_error($con), E_USER_ERROR);
-
-// //mysqli query
-// $sql = file_get_contents("create_table.sql");
-// $stmt = $con->multi_query($sql);
-
 
 $conn->close();
 
 ?>
-
-
-
 <form action="" method="post">
 First Name: <input type="text" name="first_name"><br>
 Last Name: <input type="text" name="last_name"><br>
@@ -95,16 +69,6 @@ Phone Number: <input type="tel" name="phone_number" placeholder="123-456-7890" p
 <input type="submit" name="submit" value="Submit"/>
 <button type="button" onclick="history.back();">Back</button>
 </form>
-<!--PASSENGER_ID        INTEGER NOT NULL,
-    FIRST_NAME          CHAR(20),
-    LAST_NAME           CHAR(20),
-    FREQUENT_FLYER_NUMBER   INTEGER,
-    TSA_PRECHECK        CHAR(1),
-    EMAIL_ADDRESS       VARCHAR(20),
-    PHONE_NUMBER        VARCHAR(15),-->
-<br>
-<br>
-
 
 
 
